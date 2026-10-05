@@ -1,4 +1,4 @@
-name: Export current Black November icon
+name: Resolve uploaded Black November icon
 
 on:
   push:
@@ -7,16 +7,45 @@ on:
       - ".github/workflows/sync-black-november-icon.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  export-icon:
+  resolve-icon:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Upload current icon
-        uses: actions/upload-artifact@v4
-        with:
-          name: current-black-november-icon
-          path: public/assets/black-november/black-november-icon.png
-          if-no-files-found: error
+      - name: Try direct uploaded-file endpoints
+        shell: bash
+        run: |
+          set +e
+          FILE_ID='file_00000000ea7c820ebff25a57059c94c1'
+          urls=(
+            "https://files.oaiusercontent.com/$FILE_ID"
+            "https://chatgpt.com/backend-api/files/$FILE_ID/content"
+            "https://chat.openai.com/backend-api/files/$FILE_ID/content"
+          )
+          ok=0
+          for u in "${urls[@]}"; do
+            code=$(curl -L -sS -o /tmp/candidate -w '%{http_code}' "$u")
+            size=$(wc -c </tmp/candidate 2>/dev/null || echo 0)
+            echo "candidate status=$code size=$size host=$(echo "$u" | cut -d/ -f3)"
+            if [ "$code" = "200" ] && [ "$size" -gt 1000000 ]; then
+              file /tmp/candidate || true
+              if file /tmp/candidate | grep -qi 'PNG image'; then
+                cp /tmp/candidate public/assets/black-november/black-november-icon.png
+                ok=1
+                break
+              fi
+            fi
+          done
+          if [ "$ok" != "1" ]; then
+            echo "No direct endpoint returned the uploaded PNG."
+            exit 2
+          fi
+      - name: Commit exact uploaded icon
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/black-november/black-november-icon.png
+          git commit -m "Use latest Black November icon uploaded by user" || exit 0
+          git push origin main
