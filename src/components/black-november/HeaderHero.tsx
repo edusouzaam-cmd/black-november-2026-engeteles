@@ -10,7 +10,6 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
   const [open, setOpen] = useState(false);
   const phaseText = phase === "upcoming" ? "abre em 1º de novembro" : phase === "active" ? "condição disponível até 30 de novembro" : "edição encerrada";
   return <>
-    <div className="border-b border-border bg-card/80"><div className="bn-container flex flex-col items-center justify-center gap-5 py-7 text-center sm:py-8"><p className="text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p><div className="w-full max-w-[480px]"><Countdown /></div></div></div>
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl">
       <div className="bn-container flex h-16 items-center justify-between gap-4">
         <a href="#top" aria-label="Engeteles — início"><img src={LOGO} alt="Engeteles" className="h-7 w-auto" /></a>
@@ -19,6 +18,7 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
       </div>
       {open && <nav className="border-t border-border bg-background lg:hidden"><div className="bn-container grid gap-1 py-4">{[["#combo","O combo"],["#cursos","Cursos"],["#livro","Livro"],["#oferta","Oferta"],["#duvidas","Dúvidas"]].map(([href,label]) => <a key={href} href={href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground">{label}</a>)}<PrimaryCta phase={phase} className="mt-2 w-full sm:hidden"/></div></nav>}
     </header>
+    <div className="border-b border-border bg-card/80"><div className="bn-container flex flex-col items-center justify-center gap-5 py-7 text-center sm:py-8"><p className="text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p><div className="w-full max-w-[480px]"><Countdown /></div></div></div>
     <section id="top" className="relative overflow-hidden border-b border-border pt-20 sm:pt-28 lg:pt-32">
       <div className="absolute inset-0 bn-grid-line opacity-[.12]"/><div className="absolute left-1/2 top-0 h-[620px] w-[900px] -translate-x-1/2 rounded-full bg-accent/5 blur-3xl"/>
       <div className="bn-container relative grid items-center gap-14 pb-28 lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:pb-36">
