@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, Instagram, Linkedin } from "lucide-react";
 import { Countdown, PrimaryCta, type CampaignPhase } from "./shared";
 
@@ -33,10 +34,9 @@ export function FaqFooter({ phase, showSticky }: { phase: CampaignPhase; showSti
         </div>
         <div className="lg:text-right">
           <nav aria-label="Documentos legais" className="flex flex-wrap gap-x-6 gap-y-2 text-sm lg:justify-end">
-            <a href="mailto:contato@engeteles.com.br?subject=Solicita%C3%A7%C3%A3o%20dos%20Termos%20de%20Uso" className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Termos de Uso</a>
-            <a href="mailto:contato@engeteles.com.br?subject=Solicita%C3%A7%C3%A3o%20da%20Pol%C3%ADtica%20de%20Privacidade" className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Política de Privacidade</a>
+            <Link to="/termos-de-uso" className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Termos de Uso</Link>
+            <Link to="/politica-de-privacidade" className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Política de Privacidade</Link>
           </nav>
-          <p className="mt-2 text-xs leading-5 text-muted-foreground">Solicite os documentos legais por e-mail.</p>
           <p className="mt-6 text-xs leading-5 text-muted-foreground">© 2026 Engeteles. Todos os direitos reservados.</p>
         </div>
       </div>
