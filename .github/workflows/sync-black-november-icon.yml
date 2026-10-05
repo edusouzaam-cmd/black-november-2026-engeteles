@@ -1,0 +1,54 @@
+name: Sync Black November icon
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync-black-november-icon.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-icon:
+    if: github.event.head_commit.message == 'Trigger high quality Black November icon sync'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download high-resolution PNG
+        env:
+          ICON_URL_B64: aHR0cHM6Ly9leHBvcnQtZG93bmxvYWQuY2FudmEuY29tLzMxNTI5ZDkzLTBhNjMtNDlmMC04ODRiLWJlZjMwODU3NWMzMy8wLzAwMDEtNTUyNDE4Mjk4NTI0NTY4NjQzOC5wbmc/WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBUVlDR0tNVUg1QU83VUoyNiUyRjIwMjYxMDA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAwNFQxNzMzMDVaJlgtQW16LUV4cGlyZXM9ODkyMjMmWC1BbXotU2lnbmF0dXJlPTcxNGZlNjIzOWQzNWY1YjAzMjI4YmUzYjZjNjA1NTZlN2Y4MjNhYzY0MmUwNmI1MDllN2I5MzcyMTQzZTJjYjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JTNCeC1hbXotZXhwZWN0ZWQtYnVja2V0LW93bmVyJnJlc3BvbnNlLWV4cGlyZXM9TW9uJTJDJTIwMDUlMjBPY3QlMjAyMDI2JTIwMTglM0EyMCUzQTA4JTIwR01U
+        run: |
+          mkdir -p public/assets/black-november
+          ICON_URL="$(printf '%s' "$ICON_URL_B64" | base64 -d)"
+          curl --fail --location --retry 3 "$ICON_URL" -o public/assets/black-november/black-november-icon.png
+          test -s public/assets/black-november/black-november-icon.png
+          file public/assets/black-november/black-november-icon.png
+
+      - name: Update hero asset path
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("src/components/black-november/HeaderHero.tsx")
+          s = p.read_text()
+          s = s.replace(
+              'const BLACK_NOVEMBER_ICON = "/assets/black-november/black-november-icon.webp";',
+              'const BLACK_NOVEMBER_ICON = "/assets/black-november/black-november-icon.png";',
+          )
+          p.write_text(s)
+          PY
+
+      - name: Commit synced asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/black-november/black-november-icon.png src/components/black-november/HeaderHero.tsx
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Use original high quality Black November icon"
+            git push origin main
+          fi
