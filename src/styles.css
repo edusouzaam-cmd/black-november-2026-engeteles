@@ -211,52 +211,97 @@
 }
 
 .hero-stage {
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  isolation: isolate;
-}
-
-.hero-stage::before {
-  content: "";
-  position: absolute;
-  inset: 8% 2% 2%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 14%, transparent), transparent 64%);
-  filter: blur(12px);
-  z-index: -1;
+  gap: 18px;
+  padding: clamp(14px, 2vw, 24px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: #121212;
 }
 
 .hero-courses {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: center;
-  gap: clamp(12px, 2vw, 24px);
+  align-items: stretch;
+  gap: 12px;
   width: 100%;
 }
 
-.hero-course {
+.hero-product-card {
   min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #292929;
+  border-radius: 20px;
+  background: #181818;
+}
+
+.hero-product-image {
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 1;
+  padding: 10px;
+  border-radius: 14px;
+  background: #242424;
 }
 
-.hero-course img {
+.hero-product-image img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 200px;
+  height: 100%;
   object-fit: contain;
 }
 
-.hero-book {
-  display: block;
-  width: min(68%, 340px);
-  height: auto;
-  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.46));
+.hero-product-card figcaption {
+  padding-top: 14px;
+}
+
+.hero-product-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-product-label::before {
+  content: "";
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero-product-name {
+  margin: 8px 0 0;
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hero-book-card {
+  width: 100%;
+}
+
+.hero-book-image {
+  aspect-ratio: auto;
+  height: 300px;
+  padding: 20px;
+}
+
+.hero-book-image .hero-book {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.35));
 }
 
 .offer-spotlight {
@@ -313,16 +358,29 @@
   }
 
   .hero-stage {
-    gap: 24px;
+    gap: 12px;
+    padding: 12px;
   }
 
-  .hero-course img {
-    max-height: 180px;
+  .hero-courses {
+    gap: 8px;
   }
 
-  .hero-book {
-    width: min(68%, 280px);
+  .hero-product-card {
+    padding: 8px;
+    border-radius: 16px;
   }
+
+  .hero-product-image {
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .hero-book-image {
+    height: 260px;
+    padding: 16px;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

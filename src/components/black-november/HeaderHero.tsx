@@ -25,11 +25,23 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
         <div><span className="bn-eyebrow">BLACK NOVEMBER · ENGETELES</span><img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" className="mt-6 h-auto w-[270px] sm:w-[300px]" /><h1 className="bn-hero-headline mt-5 max-w-[780px]">Planejamento, confiabilidade e gestão financeira.<span className="block text-muted-foreground">Em uma única formação.</span></h1><p className="mt-7 max-w-2xl text-xl font-medium leading-7 tracking-[-.025em] sm:text-2xl">3 cursos completos + o livro PCM Descomplicado de presente.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Uma condição para quem quer dominar os três pilares que sustentam uma Gestão da Manutenção mais estruturada — disponível somente durante novembro.</p><div className="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[.12em] text-muted-foreground"><span className="text-foreground">PCM</span><span>+</span><span className="text-foreground">RCM</span><span>+</span><span className="text-foreground">GFM</span><span>+</span><span className="text-accent">Livro de presente</span></div><div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center"><PrimaryCta phase={phase}/><a href="#combo" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">Ver tudo que está incluso <ArrowDown size={15}/></a></div><p className="mt-4 text-xs text-muted-foreground">Campanha válida de 01/11/2026 a 30/11/2026 às 23:59:59 (horário de Brasília).</p></div>
         <div className="hero-stage" aria-label="PCM, RCM, GFM e livro PCM Descomplicado">
           <div className="hero-courses">
-            <div className="hero-course"><img src="/assets/black-november/pcm-logo.png" alt="PCM Descomplicado — curso"/></div>
-            <div className="hero-course"><img src="/assets/black-november/rcm-logo.png" alt="RCM PRO — curso"/></div>
-            <div className="hero-course"><img src="/assets/black-november/gfm-logo.png" alt="Gestão Financeira da Manutenção — curso"/></div>
+            <figure className="hero-product-card">
+              <div className="hero-product-image"><img src="/assets/black-november/pcm-logo.png" alt="Logo PCM Descomplicado"/></div>
+              <figcaption><span className="hero-product-label">PCM</span><p className="hero-product-name">PCM Descomplicado</p></figcaption>
+            </figure>
+            <figure className="hero-product-card">
+              <div className="hero-product-image"><img src="/assets/black-november/rcm-logo.png" alt="Logo RCM PRO"/></div>
+              <figcaption><span className="hero-product-label">RCM</span><p className="hero-product-name">RCM PRO — Manutenção Centrada na Confiabilidade</p></figcaption>
+            </figure>
+            <figure className="hero-product-card">
+              <div className="hero-product-image"><img src="/assets/black-november/gfm-logo.png" alt="Logo Gestão Financeira da Manutenção"/></div>
+              <figcaption><span className="hero-product-label">GFM</span><p className="hero-product-name">Gestão Financeira da Manutenção</p></figcaption>
+            </figure>
           </div>
-          <img className="hero-book" src={BOOK} alt="Livro PCM Descomplicado — 4ª edição"/>
+          <figure className="hero-product-card hero-book-card">
+            <div className="hero-product-image hero-book-image"><img className="hero-book" src={BOOK} alt="Livro PCM Descomplicado — 4ª edição"/></div>
+            <figcaption><span className="hero-product-label">Livro de presente</span><p className="hero-product-name">PCM Descomplicado — 4ª edição</p></figcaption>
+          </figure>
         </div>
       </div>
     </section>
