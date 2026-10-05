@@ -49,13 +49,13 @@ export function Countdown({ compact = false }: { compact?: boolean }) {
   if (phase === "ended") return <p className="text-sm text-muted-foreground">Esta edição da Black November foi encerrada.</p>;
   const items = [[timeLeft?.days, "dias"], [timeLeft?.hours, "horas"], [timeLeft?.minutes, "min"], [timeLeft?.seconds, "seg"]] as const;
   return (
-    <div>
-      {!compact && <p className="mb-4 text-sm text-muted-foreground">{phase === "upcoming" ? "A Black November começa em" : "A Black November termina em"}</p>}
-      <div className="flex gap-2">
+    <div className={compact ? "max-w-full" : "w-full max-w-[480px]"}>
+      {!compact && <p className="mb-4 text-sm font-semibold text-foreground">{phase === "upcoming" ? "A Black November começa em" : "A Black November termina em"}</p>}
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {items.map(([value, unit]) => (
-          <div key={unit} className={`${compact ? "min-w-[42px] px-2 py-2" : "min-w-[72px] px-3 py-3 sm:min-w-[84px]"} rounded-2xl border border-border bg-secondary text-center`}>
-            <strong className={`${compact ? "text-sm" : "text-xl sm:text-2xl"} countdown-number block font-semibold`}>{value == null ? "--" : String(value).padStart(2, "0")}</strong>
-            <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[.12em] text-muted-foreground">{unit}</span>
+          <div key={unit} className={`${compact ? "min-w-[52px] px-2 py-2" : "min-w-0 px-2 py-4 sm:px-4 sm:py-5"} rounded-2xl border border-accent/50 bg-accent/10 text-center shadow-[0_0_24px_rgba(0,153,255,0.12)]`}>
+            <strong className={`${compact ? "text-2xl" : "text-4xl sm:text-5xl"} countdown-number block font-bold leading-none text-foreground`}>{value == null ? "--" : String(value).padStart(2, "0")}</strong>
+            <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[.12em] text-muted-foreground">{unit}</span>
           </div>
         ))}
       </div>

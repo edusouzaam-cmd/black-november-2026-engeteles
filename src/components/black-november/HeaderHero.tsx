@@ -10,7 +10,7 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
   const [open, setOpen] = useState(false);
   const phaseText = phase === "upcoming" ? "abre em 1º de novembro" : phase === "active" ? "condição disponível até 30 de novembro" : "edição encerrada";
   return <>
-    <div className="border-b border-border bg-card/80"><div className="bn-container flex min-h-10 items-center justify-between gap-4 py-2"><p className="text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p><div className="hidden sm:block"><Countdown compact /></div></div></div>
+    <div className="border-b border-border bg-card/80"><div className="bn-container flex flex-col items-center justify-between gap-4 py-5 sm:flex-row sm:gap-8"><p className="text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p><div className="w-full max-w-[480px]"><Countdown /></div></div></div>
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl">
       <div className="bn-container flex h-16 items-center justify-between gap-4">
         <a href="#top" aria-label="Engeteles — início"><img src={LOGO} alt="Engeteles" className="h-7 w-auto" /></a>
