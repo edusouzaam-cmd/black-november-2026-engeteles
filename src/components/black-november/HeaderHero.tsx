@@ -4,7 +4,7 @@ import { Countdown, PrimaryCta, type CampaignPhase } from "./shared";
 
 const LOGO = "https://livros.engeteles.com.br/wp-content/uploads/2022/08/Logotipo-4-1-1.png";
 const BOOK = "https://livros.engeteles.com.br/wp-content/uploads/2026/03/MOCKUP-LIVRO-PCM-DESCOMPLICADO-4a-EDICAO_COMPRESSED.png";
-const BLACK_NOVEMBER_ICON = "/assets/black-november/black-november-icon.webp";
+const BLACK_NOVEMBER_ICON = "/assets/black-november/black-november-icon.png";
 
 export function HeaderHero({ phase }: { phase: CampaignPhase }) {
   const [open, setOpen] = useState(false);
