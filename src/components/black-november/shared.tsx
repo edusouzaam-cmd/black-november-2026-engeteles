@@ -65,7 +65,7 @@ export function Countdown({ compact = false }: { compact?: boolean }) {
 
 export function Price({ value, fallback = "Valor em validação" }: { value: number | null; fallback?: string }) {
   const formatted = formatCurrency(value);
-  return formatted ? <>{formatted}</> : <span className="text-base font-medium text-muted-foreground">{fallback}</span>;
+  return formatted ? <>{formatted}</> : <span className="inline-block text-base font-medium leading-relaxed tracking-normal text-muted-foreground">{fallback}</span>;
 }
 
 export function PrimaryCta({ phase, className = "" }: { phase: CampaignPhase; className?: string }) {
