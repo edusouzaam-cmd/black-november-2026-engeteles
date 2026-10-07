@@ -19,7 +19,20 @@ const faq = [
 
 export function FaqFooter({ phase, showSticky }: { phase: CampaignPhase; showSticky: boolean }) {
   return <>
-    <section className="bn-section border-y border-border bg-card/30"><div className="bn-container"><span className="bn-eyebrow">PARA QUEM É</span><h2 className="bn-section-title mt-6 max-w-4xl">Para profissionais de manutenção.</h2><div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{["PCM e planejamento","Engenharia de manutenção","Confiabilidade","Supervisão","Coordenação","Gestão","Técnicos em evolução profissional","Responsáveis por orçamento e indicadores"].map(x => <div key={x} className="flex min-h-24 items-end rounded-2xl border border-border bg-card p-5 text-sm font-medium">{x}</div>)}</div></div></section>
+    <section className="bn-section border-y border-border bg-card/30">
+      <div className="bn-container text-center">
+        <span className="bn-eyebrow">PARA QUEM É</span>
+        <h2 className="bn-section-title mx-auto mt-6 max-w-4xl">Para profissionais de manutenção.</h2>
+        <div className="mt-14 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {["PCM e planejamento","Engenharia de manutenção","Confiabilidade","Supervisão","Coordenação","Gestão","Técnicos em evolução profissional","Responsáveis por orçamento e indicadores"].map(x => (
+            <div key={x} className="group relative flex min-h-32 items-center justify-center overflow-hidden rounded-2xl border border-border bg-card px-6 py-8 transition-[background-color,border-color,box-shadow,transform] duration-300 hover:border-accent/70 hover:bg-accent/15 hover:shadow-[0_0_32px_rgba(0,153,255,0.22)] motion-safe:hover:-translate-y-1 motion-reduce:transition-none">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,153,255,0.22),transparent_75%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"/>
+              <span className="relative max-w-[28ch] text-center text-base font-semibold leading-6 text-foreground transition-colors duration-300 group-hover:text-white motion-reduce:transition-none">{x}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
     <section id="duvidas" className="bn-section scroll-mt-28"><div className="bn-container grid gap-14 lg:grid-cols-[.65fr_1.35fr]"><div><span className="bn-eyebrow">DÚVIDAS</span><h2 className="bn-section-title mt-6">Perguntas frequentes.</h2></div><div className="space-y-4">{faq.map(([q,a]) => <details key={q} className="group rounded-2xl border border-border bg-card"><summary className="flex min-h-20 cursor-pointer list-none items-center justify-between gap-6 px-6 py-5 text-sm font-medium">{q}<ChevronDown size={17} className="shrink-0 transition-transform group-open:rotate-180"/></summary><p className="border-t border-border px-6 py-6 text-sm leading-7 text-muted-foreground">{a}</p></details>)}</div></div></section>
     <section className="pb-32 pt-12 sm:pb-40 sm:pt-16"><div className="bn-container"><div className="bn-card bn-soft-glow relative overflow-hidden px-6 py-16 text-center sm:px-16 sm:py-24"><div className="absolute inset-0 bn-grid-line opacity-[.12]"/><div className="relative mx-auto max-w-4xl"><span className="bn-eyebrow">BLACK NOVEMBER 2026</span><h2 className="mt-5 text-[clamp(38px,6vw,76px)] font-semibold leading-[1.05] tracking-[-.062em]">Aproveite a Black November.</h2><p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground">Oferta disponível até 30 de novembro de 2026.</p><div className="mt-8 flex justify-center"><PrimaryCta phase={phase}/></div><div className="mt-8 flex justify-center"><Countdown compact enlarged/></div></div></div></div></section>
     <footer className="border-t border-border pb-40 pt-16 sm:pb-16">
