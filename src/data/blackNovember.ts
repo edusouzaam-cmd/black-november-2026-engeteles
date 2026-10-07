@@ -22,7 +22,7 @@ export const BLACK_NOVEMBER = {
   blackNovemberPrice: null as number | null,
   installments: null as number | null,
   installmentPrice: null as number | null,
-  bookReferencePrice: null as number | null,
+  bookReferencePrice: 99 as number | null,
   gtmId: "",
   metaPixelId: "",
 };
