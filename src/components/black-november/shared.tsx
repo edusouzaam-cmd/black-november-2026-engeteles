@@ -44,17 +44,18 @@ export function track(event: string, payload: Record<string, unknown> = {}) {
   target.dataLayer.push({ event, ...payload });
 }
 
-export function Countdown({ compact = false }: { compact?: boolean }) {
+export function Countdown({ compact = false, enlarged = false }: { compact?: boolean; enlarged?: boolean }) {
+  const small = compact && !enlarged;
   const { phase, timeLeft } = useCampaignClock();
   if (phase === "ended") return <p className="text-sm text-muted-foreground">Esta edição da Black November foi encerrada.</p>;
   const items = [[timeLeft?.days, "dias"], [timeLeft?.hours, "horas"], [timeLeft?.minutes, "min"], [timeLeft?.seconds, "seg"]] as const;
   return (
-    <div className={compact ? "max-w-full" : "w-full max-w-[480px]"}>
+    <div className={small ? "max-w-full" : "w-full max-w-[480px]"}>
       {!compact && <p className="mb-4 text-sm font-semibold text-foreground">{phase === "upcoming" ? "A Black November começa em" : "A Black November termina em"}</p>}
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {items.map(([value, unit]) => (
-          <div key={unit} className={`${compact ? "min-w-[52px] px-2 py-2" : "min-w-0 px-2 py-4 sm:px-4 sm:py-5"} rounded-xl border border-accent/50 bg-accent/10 text-center shadow-[0_0_24px_rgba(0,153,255,0.12)]`}>
-            <strong className={`${compact ? "text-2xl" : "text-4xl sm:text-5xl"} countdown-number block font-bold leading-none text-foreground`}>{value == null ? "--" : String(value).padStart(2, "0")}</strong>
+          <div key={unit} className={`${small ? "min-w-[52px] px-2 py-2" : "min-w-0 px-2 py-4 sm:px-4 sm:py-5"} rounded-xl border border-accent/50 bg-accent/10 text-center shadow-[0_0_24px_rgba(0,153,255,0.12)]`}>
+            <strong className={`${small ? "text-2xl" : "text-4xl sm:text-5xl"} countdown-number block font-bold leading-none text-foreground`}>{value == null ? "--" : String(value).padStart(2, "0")}</strong>
             <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[.12em] text-muted-foreground">{unit}</span>
           </div>
         ))}
