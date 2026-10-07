@@ -11,6 +11,8 @@ export type Course = {
   topics: string[];
   modules?: string[];
   price: number | null;
+  installments: number;
+  installmentPrice: number;
 };
 
 export const BLACK_NOVEMBER = {
@@ -52,7 +54,9 @@ export const courses: Course[] = [
       "Implantação do PCM",
       "Pessoas, processos e ativos",
     ],
-    price: null,
+    price: 662.9,
+    installments: 12,
+    installmentPrice: 68.56,
   },
   {
     id: "rcm",
@@ -80,7 +84,9 @@ export const courses: Course[] = [
       "Disponibilidade",
       "Mantenabilidade e confiabilidade",
     ],
-    price: null,
+    price: 1499,
+    installments: 12,
+    installmentPrice: 155.03,
   },
   {
     id: "gfm",
@@ -119,7 +125,9 @@ export const courses: Course[] = [
       "Indicadores, estimativas e relatórios financeiros",
       "Tecnologia e gestão financeira da manutenção",
     ],
-    price: null,
+    price: 649,
+    installments: 12,
+    installmentPrice: 67.12,
   },
 ];
 

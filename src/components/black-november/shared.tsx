@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { BLACK_NOVEMBER, formatCurrency } from "../../data/blackNovember";
+import { BLACK_NOVEMBER, formatCurrency, type Course } from "../../data/blackNovember";
 
 export type CampaignPhase = "upcoming" | "active" | "ended";
 
@@ -66,6 +66,14 @@ export function Countdown({ compact = false }: { compact?: boolean }) {
 export function Price({ value, fallback = "Valor em validação" }: { value: number | null; fallback?: string }) {
   const formatted = formatCurrency(value);
   return formatted ? <>{formatted}</> : <span className="inline-block text-base font-medium leading-relaxed tracking-normal text-muted-foreground">{fallback}</span>;
+}
+
+export function RegularCoursePrice({ course }: { course: Course }) {
+  return <div className="space-y-1">
+    <strong className="block text-base font-semibold text-foreground">Apenas {course.installments} x de {formatCurrency(course.installmentPrice)} *</strong>
+    <span className="block text-xs leading-5 text-muted-foreground">Ou {formatCurrency(course.price)} à vista</span>
+    <span className="block text-[10px] leading-4 text-muted-foreground">* Total parcelado: {formatCurrency(Math.round(course.installments * course.installmentPrice * 100) / 100)}.</span>
+  </div>;
 }
 
 export function PrimaryCta({ phase, className = "" }: { phase: CampaignPhase; className?: string }) {
