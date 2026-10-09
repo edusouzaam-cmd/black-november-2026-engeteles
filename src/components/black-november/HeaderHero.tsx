@@ -1,4 +1,4 @@
-import { ArrowDown, Menu, X } from "lucide-react";
+import { ArrowDown, BookOpen, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Countdown, PrimaryCta, type CampaignPhase } from "./shared";
 
@@ -8,6 +8,7 @@ const BLACK_NOVEMBER_ICON = "/assets/black-november/black-november-icon.png?v=e6
 
 export function HeaderHero({ phase }: { phase: CampaignPhase }) {
   const [open, setOpen] = useState(false);
+  const [selectedCombo, setSelectedCombo] = useState<"books" | "courses" | null>(null);
   const phaseText = phase === "upcoming" ? "abre em 1º de novembro" : phase === "active" ? "condição disponível até 30 de novembro" : "edição encerrada";
   return <>
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl">
@@ -25,27 +26,30 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
           <p className="text-[10px] font-semibold uppercase leading-5 tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p>
           <div className="w-full max-w-[480px]"><Countdown /></div>
         </div>
-        <div className="order-2 min-w-0 lg:col-start-1 lg:row-start-1 lg:row-span-2"><span className="bn-eyebrow">BLACK NOVEMBER · ENGETELES</span><img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" className="mt-6 h-auto w-full max-w-full sm:w-[600px]" /><h1 className="bn-hero-headline mt-5 max-w-[780px]">Planejamento, confiabilidade e gestão financeira.<span className="block text-muted-foreground">Em uma única formação.</span></h1><p className="mt-7 max-w-2xl text-xl font-medium leading-7 tracking-[-.025em] sm:text-2xl">3 cursos completos + o livro PCM Descomplicado de presente.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Aprenda a planejar a manutenção, analisar falhas e controlar custos.</p><div className="mt-10 flex flex-col items-start gap-5 xl:flex-row xl:items-center"><PrimaryCta phase={phase}/><a href="#combo" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">Ver tudo que está incluso <ArrowDown size={15}/></a></div><p className="mt-4 text-xs text-muted-foreground">Campanha válida de 01/11/2026 a 30/11/2026 às 23:59:59 (horário de Brasília).</p></div>
+        <div className="order-2 min-w-0 lg:col-start-1 lg:row-start-1 lg:row-span-2"><span className="bn-eyebrow">BLACK NOVEMBER · ENGETELES</span><img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" className="mt-6 h-auto w-full max-w-full sm:w-[600px]" /><h1 className="bn-hero-headline mt-5 max-w-[780px]">Livros ou cursos completos.<span className="block text-muted-foreground">Escolha seu combo Black November.</span></h1><p className="mt-7 max-w-2xl text-xl font-medium leading-7 tracking-[-.025em] sm:text-2xl">Dois combos para aprofundar seus conhecimentos em manutenção.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Escolha o combo de livros ou leve PCM, RCM e Gestão Financeira da Manutenção com o livro PCM Descomplicado de bônus.</p><div className="mt-10 flex flex-col items-start gap-5 xl:flex-row xl:items-center"><a href="#escolher-combo" className="bn-button bn-button-primary">Escolher meu combo <ArrowDown size={15}/></a><a href="#combo" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">Ver tudo que está incluso <ArrowDown size={15}/></a></div><p className="mt-4 text-xs text-muted-foreground">Campanha válida de 01/11/2026 a 30/11/2026 às 23:59:59 (horário de Brasília).</p></div>
 
-        <div className="hero-stage order-3 lg:col-start-2 lg:row-start-2" aria-label="PCM, RCM, GFM e livro PCM Descomplicado">
-          <div className="hero-courses">
-            <figure className="hero-product-card">
-              <div className="hero-product-image"><img src="/assets/black-november/pcm-logo.png" alt="Logo PCM Descomplicado"/></div>
-              <figcaption><span className="hero-product-label">PCM</span><p className="hero-product-name">PCM Descomplicado</p></figcaption>
-            </figure>
-            <figure className="hero-product-card">
-              <div className="hero-product-image"><img src="/assets/black-november/rcm-logo.png" alt="Logo RCM PRO"/></div>
-              <figcaption><span className="hero-product-label">RCM</span><p className="hero-product-name">RCM PRO — Manutenção Centrada na Confiabilidade</p></figcaption>
-            </figure>
-            <figure className="hero-product-card">
-              <div className="hero-product-image"><img src="/assets/black-november/gfm-logo.png" alt="Logo Gestão Financeira da Manutenção"/></div>
-              <figcaption><span className="hero-product-label">GFM</span><p className="hero-product-name">Gestão Financeira da Manutenção</p></figcaption>
-            </figure>
-          </div>
-          <figure className="hero-product-card hero-book-card">
-            <div className="hero-product-image hero-book-image"><img className="hero-book" src={BOOK} alt="Livro PCM Descomplicado — 4ª edição"/></div>
-            <figcaption><span className="hero-product-label">Livro de presente</span><p className="hero-product-name">PCM Descomplicado — 4ª edição</p></figcaption>
-          </figure>
+        <div id="escolher-combo" className="hero-stage order-3 scroll-mt-24 lg:col-start-2 lg:row-start-2" aria-label="Escolha seu combo Black November">
+          <h2 className="text-lg font-semibold">Qual combo combina com você?</h2>
+          <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "books" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
+            <span className="bn-eyebrow">COMBO 1</span>
+            <h3 className="mt-2 text-xl font-semibold">Combo de livros</h3>
+            <div className="mt-4 flex min-h-32 items-center justify-center rounded-xl border border-dashed border-border bg-secondary/50" aria-label="Espaço reservado para a imagem do combo de livros"><BookOpen size={48} strokeWidth={1} className="text-muted-foreground"/></div>
+            <button type="button" aria-pressed={selectedCombo === "books"} onClick={() => setSelectedCombo("books")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "books" ? "Combo de livros selecionado" : "Escolher combo de livros"}</button>
+          </article>
+          <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "courses" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
+            <span className="bn-eyebrow">COMBO 2</span>
+            <h3 className="mt-2 text-xl font-semibold">3 cursos + livro de bônus</h3>
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {[["pcm", "PCM Descomplicado"], ["rcm", "RCM PRO"], ["gfm", "Gestão Financeira da Manutenção"]].map(([id, title]) => <figure key={id} className="min-w-0"><img src={`/assets/black-november/${id}-mockup.webp`} alt={`Mockup do curso ${title}`} className="h-32 w-full object-contain sm:h-40"/><figcaption className="mt-2 text-center text-[10px] leading-4 text-muted-foreground">{title}</figcaption></figure>)}
+            </div>
+            <div className="mt-4 flex items-center gap-4 rounded-xl bg-secondary/50 p-3">
+              <img src={BOOK} alt="Livro PCM Descomplicado — 4ª edição" className="h-20 w-16 object-contain"/>
+              <p className="text-xs leading-5"><span className="block font-semibold text-accent">Livro de bônus</span>PCM Descomplicado — 4ª edição</p>
+            </div>
+            <button type="button" aria-pressed={selectedCombo === "courses"} onClick={() => setSelectedCombo("courses")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "courses" ? "Combo de cursos selecionado" : "Escolher combo de cursos"}</button>
+            {selectedCombo === "courses" && <a href="#oferta" className="mt-3 block text-center text-sm font-medium text-accent">Ver condição do combo de cursos ↓</a>}
+          </article>
+          <p role="status" className="sr-only">{selectedCombo === "books" ? "Combo de livros selecionado." : selectedCombo === "courses" ? "Combo de cursos e livro de bônus selecionado." : "Escolha entre os dois combos."}</p>
         </div>
       </div>
     </section>
