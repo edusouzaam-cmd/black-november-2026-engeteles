@@ -73,7 +73,7 @@ function BonusCard() {
 const books = [
   { id: "gfm", title: "Gestão Financeira da Manutenção", launch: "17 de novembro de 2022", chapters: "8", pages: "248", edition: "2ª edição" },
   { id: "pcm", title: "PCM Descomplicado", launch: "2026 (4ª edição)", chapters: "12", pages: "290", edition: "4ª edição, revisada e ampliada" },
-  { id: "nemp", title: "Não Existe Melhoria de Processos sem o Desenvolvimento de Pessoas", launch: "2023", chapters: "6", pages: "219", edition: "Não informada oficialmente" },
+  { id: "nemp", title: "Não Existe Melhoria de Processos sem o Desenvolvimento de Pessoas", launch: "2023", chapters: "6", pages: "219", edition: "1ª edição" },
 ];
 
 function Books() {
