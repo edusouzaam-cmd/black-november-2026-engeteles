@@ -4,9 +4,8 @@ import { courses, type Course } from "../../data/blackNovember";
 function ProductCard({ course }: { course: Course }) {
   return (
     <article id={course.id} data-track-view={`view_${course.id}`} aria-labelledby={`${course.id}-title`} className="bn-card group min-w-0 scroll-mt-28 p-6 sm:p-8 lg:p-5 xl:p-6">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-secondary">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,153,255,.12),transparent_48%)]" />
-        <img src={course.id === "pcm" ? "/assets/black-november/pcm-card.webp" : `/assets/black-november/${course.id}-mockup.webp`} alt={`Capa do curso ${course.shortTitle}`} loading="lazy" className="relative h-full w-full object-contain p-8 transition-transform duration-300 group-hover:scale-[1.035]" />
+      <div className="relative h-[240px] sm:h-[280px]">
+        <img src={course.id === "pcm" ? "/assets/black-november/pcm-card.webp" : `/assets/black-november/${course.id}-mockup.webp`} alt={`Capa do curso ${course.shortTitle}`} loading="lazy" className="relative h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.035]" />
       </div>
       <span className="bn-eyebrow mt-6">{course.eyebrow} · {course.shortTitle}</span>
       <h3 id={`${course.id}-title`} className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-.045em]">{course.title}</h3>
@@ -51,8 +50,8 @@ function ProductCard({ course }: { course: Course }) {
 function BonusCard() {
   return (
     <article id="livro" data-track-view="view_book_bonus" aria-labelledby="bonus-title" className="book-spotlight bn-card min-w-0 scroll-mt-28 p-6 sm:p-8 lg:p-5 xl:p-6">
-      <div className="relative aspect-[4/3] rounded-[22px] bg-secondary">
-        <img src="https://livros.engeteles.com.br/wp-content/uploads/2026/03/MOCKUP-LIVRO-PCM-DESCOMPLICADO-4a-EDICAO_COMPRESSED.png" alt="Livro PCM Descomplicado — 4ª edição" loading="lazy" className="h-full w-full object-contain p-6 drop-shadow-2xl" />
+      <div className="relative h-[240px] sm:h-[280px]">
+        <img src="https://livros.engeteles.com.br/wp-content/uploads/2026/03/MOCKUP-LIVRO-PCM-DESCOMPLICADO-4a-EDICAO_COMPRESSED.png" alt="Livro PCM Descomplicado — 4ª edição" loading="lazy" className="h-full w-full object-contain p-2 drop-shadow-2xl" />
       </div>
       <span className="bn-eyebrow mt-6">BÔNUS BLACK NOVEMBER</span>
       <h3 id="bonus-title" className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-.045em]">Livro PCM Descomplicado — 4ª edição.</h3>
@@ -73,7 +72,7 @@ function BonusCard() {
 export function Courses() {
   return (
     <section id="combo" className="bn-section scroll-mt-28">
-      <div className="bn-container">
+      <div className="mx-auto w-[calc(100%-36px)] max-w-[1440px] sm:w-[calc(100%-48px)]">
         <span className="bn-eyebrow">O QUE VOCÊ LEVA</span>
         <h2 className="bn-section-title mt-6 max-w-4xl">Cursos inclusos no combo 1.</h2>
         <div id="cursos" className="mt-14 grid scroll-mt-28 items-start gap-6 md:grid-cols-2 xl:grid-cols-4">
