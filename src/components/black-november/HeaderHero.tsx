@@ -1,4 +1,4 @@
-import { ArrowDown, BookOpen, Menu, X } from "lucide-react";
+import { ArrowDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Countdown, PrimaryCta, type CampaignPhase } from "./shared";
 
@@ -44,7 +44,7 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
           <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "books" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
             <span className="bn-eyebrow">COMBO 2</span>
             <h3 className="mt-2 text-xl font-semibold">Combo de livros</h3>
-            <div className="mt-4 flex min-h-32 items-center justify-center rounded-xl border border-dashed border-border bg-secondary/50" aria-label="Espaço reservado para a imagem do combo de livros"><BookOpen size={48} strokeWidth={1} className="text-muted-foreground"/></div>
+            <img src="/assets/black-november/books-combo-final.webp" alt="Combo de livros: desenvolvimento de pessoas, Gestão Financeira da Manutenção e PCM Descomplicado" className="mt-4 h-auto w-full object-contain"/>
             <button type="button" aria-pressed={selectedCombo === "books"} onClick={() => setSelectedCombo("books")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "books" ? "Combo de livros selecionado" : "Escolher combo de livros"}</button>
           </article>
           <p role="status" className="sr-only">{selectedCombo === "books" ? "Combo de livros selecionado." : selectedCombo === "courses" ? "Combo de cursos e livro de bônus selecionado." : "Escolha entre os dois combos."}</p>
