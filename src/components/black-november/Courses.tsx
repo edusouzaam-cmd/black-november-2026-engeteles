@@ -11,5 +11,5 @@ function CourseBlock({ course, reverse }: { course: Course; reverse?: boolean })
 }
 
 export function Courses() {
-  return <><section id="combo" className="bn-section scroll-mt-28"><div className="bn-container"><span className="bn-eyebrow">O QUE VOCÊ LEVA</span><h2 className="bn-section-title mt-6 max-w-4xl">Cursos inclusos no combo 2.</h2><div id="cursos" className="mt-14 grid scroll-mt-28 gap-6 lg:grid-cols-3">{courses.map(c => <ProductCard key={c.id} course={c}/>)}</div></div></section>{courses.map((c,i) => <CourseBlock key={c.id} course={c} reverse={i % 2 === 1}/>)}</>;
+  return <><section id="combo" className="bn-section scroll-mt-28"><div className="bn-container"><span className="bn-eyebrow">O QUE VOCÊ LEVA</span><h2 className="bn-section-title mt-6 max-w-4xl">Cursos inclusos no combo 1.</h2><div id="cursos" className="mt-14 grid scroll-mt-28 gap-6 lg:grid-cols-3">{courses.map(c => <ProductCard key={c.id} course={c}/>)}</div></div></section>{courses.map((c,i) => <CourseBlock key={c.id} course={c} reverse={i % 2 === 1}/>)}</>;
 }

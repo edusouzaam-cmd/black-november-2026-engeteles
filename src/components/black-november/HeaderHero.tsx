@@ -1,4 +1,4 @@
-import { ArrowDown, BookOpen, Menu, X } from "lucide-react";
+import { ArrowDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Countdown, PrimaryCta, type CampaignPhase } from "./shared";
 
@@ -30,14 +30,8 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
 
         <div id="escolher-combo" className="hero-stage order-3 scroll-mt-24 lg:col-start-2 lg:row-start-2" aria-label="Escolha seu combo Black November">
           <h2 className="text-lg font-semibold">Qual combo combina com você?</h2>
-          <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "books" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
-            <span className="bn-eyebrow">COMBO 1</span>
-            <h3 className="mt-2 text-xl font-semibold">Combo de livros</h3>
-            <div className="mt-4 flex min-h-32 items-center justify-center rounded-xl border border-dashed border-border bg-secondary/50" aria-label="Espaço reservado para a imagem do combo de livros"><BookOpen size={48} strokeWidth={1} className="text-muted-foreground"/></div>
-            <button type="button" aria-pressed={selectedCombo === "books"} onClick={() => setSelectedCombo("books")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "books" ? "Combo de livros selecionado" : "Escolher combo de livros"}</button>
-          </article>
           <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "courses" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
-            <span className="bn-eyebrow">COMBO 2</span>
+            <span className="bn-eyebrow">COMBO 1</span>
             <h3 className="mt-2 text-xl font-semibold">3 cursos + livro de bônus</h3>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {[["pcm", "PCM Descomplicado"], ["rcm", "RCM PRO"], ["gfm", "Gestão Financeira da Manutenção"]].map(([id, title]) => <figure key={id} className="min-w-0"><img src={`/assets/black-november/${id}-mockup.webp`} alt={`Mockup do curso ${title}`} className="h-32 w-full object-contain sm:h-40"/><figcaption className="mt-2 text-center text-[10px] leading-4 text-muted-foreground">{title}</figcaption></figure>)}
@@ -48,6 +42,12 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
             </div>
             <button type="button" aria-pressed={selectedCombo === "courses"} onClick={() => setSelectedCombo("courses")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "courses" ? "Combo de cursos selecionado" : "Escolher combo de cursos"}</button>
             {selectedCombo === "courses" && <a href="#oferta" className="mt-3 block text-center text-sm font-medium text-accent">Ver condição do combo de cursos ↓</a>}
+          </article>
+          <article className={`rounded-2xl border p-4 transition-colors ${selectedCombo === "books" ? "border-accent bg-accent/10" : "border-border bg-card"}`}>
+            <span className="bn-eyebrow">COMBO 2</span>
+            <h3 className="mt-2 text-xl font-semibold">Combo de livros</h3>
+            <img src="/assets/black-november/books-combo.webp" alt="Combo de três livros de manutenção em formato de escada" className="mt-4 h-auto w-full object-contain"/>
+            <button type="button" aria-pressed={selectedCombo === "books"} onClick={() => setSelectedCombo("books")} className="bn-button bn-button-secondary mt-4 w-full">{selectedCombo === "books" ? "Combo de livros selecionado" : "Escolher combo de livros"}</button>
           </article>
           <p role="status" className="sr-only">{selectedCombo === "books" ? "Combo de livros selecionado." : selectedCombo === "courses" ? "Combo de cursos e livro de bônus selecionado." : "Escolha entre os dois combos."}</p>
         </div>
