@@ -18,10 +18,10 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
       </div>
       {open && <nav className="border-t border-border bg-background lg:hidden"><div className="bn-container grid gap-1 py-4">{[["#combo","O combo"],["#cursos","Cursos"],["#livro","Livro"],["#oferta","Oferta"],["#duvidas","Dúvidas"]].map(([href,label]) => <a key={href} href={href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground">{label}</a>)}<PrimaryCta phase={phase} className="mt-2 w-full sm:hidden"/></div></nav>}
     </header>
-    <section id="top" className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden border-b border-border py-8 sm:py-10">
+    <section id="top" className="relative overflow-hidden border-b border-border pt-[30px] pb-[50px]">
       <div className="absolute inset-0 bn-grid-line opacity-[.12]"/><div className="absolute left-1/2 top-0 h-[620px] w-[900px] -translate-x-1/2 rounded-full bg-accent/5 blur-3xl"/>
-      <div className="bn-container relative flex flex-col items-center gap-6 text-center sm:gap-8">
-        <img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" fetchPriority="high" className="block h-auto max-h-[calc(100svh-19rem)] w-full max-w-[1050px] object-contain" />
+      <div className="relative mx-auto flex w-[calc(100%-40px)] max-w-[1365px] flex-col items-center gap-6 text-center sm:gap-8">
+        <img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" fetchPriority="high" className="block h-auto max-h-[calc((100svh-19rem)*1.3)] w-full max-w-[1365px] object-contain" />
         <div className="flex w-full flex-col items-center gap-3">
           <p className="text-xs font-semibold uppercase leading-5 tracking-[.16em] text-muted-foreground sm:text-sm">Black November 2026 · {phaseText}</p>
           <Countdown enlarged />
