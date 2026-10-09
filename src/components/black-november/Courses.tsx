@@ -1,15 +1,62 @@
 import { Check, ChevronDown } from "lucide-react";
 import { courses, type Course } from "../../data/blackNovember";
-import { track } from "./shared";
 
 function ProductCard({ course }: { course: Course }) {
-  return <article className="bn-card group flex flex-col p-6 sm:p-8"><div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-secondary"><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,153,255,.12),transparent_48%)]"/><img src={course.id === "pcm" ? "/assets/black-november/pcm-card.webp" : `/assets/black-november/${course.id}-mockup.webp`} alt={`Capa do curso ${course.shortTitle}`} loading="lazy" className="relative h-full w-full object-contain p-8 transition-transform duration-300 group-hover:scale-[1.035]"/></div><span className="bn-eyebrow mt-6">{course.shortTitle}</span><h3 className="mt-4 text-[30px] font-semibold leading-[1.12] tracking-[-.045em]">{course.role}</h3><div className="mt-8 grid grid-cols-2 gap-3">{course.metrics.map(m => <div key={m.label} className="rounded-2xl bg-secondary px-4 py-3"><strong className="block text-lg">{m.value}</strong><span className="text-[11px] text-muted-foreground">{m.label}</span></div>)}</div><div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-8"><a href={`#${course.id}`} onClick={() => track(`view_${course.id}`)} className="text-sm font-medium hover:text-accent">Ver conteúdo ↓</a></div></article>;
-}
-
-function CourseBlock({ course, reverse }: { course: Course; reverse?: boolean }) {
-  return <section id={course.id} data-track-view={`view_${course.id}`} className="bn-section scroll-mt-28 border-t border-border"><div className="bn-container grid items-center gap-14 lg:grid-cols-2 lg:gap-16"><div className={reverse ? "lg:order-2" : ""}><span className="bn-eyebrow">{course.eyebrow}</span><h2 className="mt-5 text-[clamp(34px,4.8vw,64px)] font-semibold leading-[1.08] tracking-[-.055em]">{course.title}</h2><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{course.description}</p><div className="mt-8 grid grid-cols-2 gap-3 xl:grid-cols-4">{course.metrics.map(m => <div key={m.label} className="rounded-2xl border border-border bg-card px-4 py-4"><strong className="block text-xl">{m.value}</strong><span className="text-[11px] text-muted-foreground">{m.label}</span></div>)}</div><h3 className="mt-10 text-xs font-semibold uppercase tracking-[.14em] text-muted-foreground">Conteúdo do curso</h3><div className="mt-6 grid gap-4 sm:grid-cols-2">{course.topics.map(t => <div key={t} className="flex gap-3 text-sm leading-6"><Check size={15} className="mt-0.5 shrink-0 text-accent"/>{t}</div>)}</div>{course.modules && <details className="group mt-8 rounded-2xl border border-border bg-card"><summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-5 text-sm font-medium">Ver conteúdo programático <ChevronDown size={17} className="transition-transform group-open:rotate-180"/></summary><div className="border-t border-border px-5 py-5"><ol className="grid gap-3 text-sm text-muted-foreground">{course.modules.map((m,i) => <li key={m}><span className="mr-3 text-xs text-accent">{String(i+1).padStart(2,"0")}</span>{m}</li>)}</ol></div></details>}</div><div className={`${reverse ? "lg:order-1" : ""} bn-card bn-soft-glow flex min-h-[320px] sm:min-h-[430px] items-center justify-center p-10`}><img src={`/assets/black-november/${course.id}-mockup.webp`} alt={`Capa ${course.shortTitle}`} loading="lazy" className="w-full max-w-[330px] object-contain drop-shadow-2xl"/></div></div></section>;
+  return (
+    <article id={course.id} data-track-view={`view_${course.id}`} aria-labelledby={`${course.id}-title`} className="bn-card group min-w-0 scroll-mt-28 p-6 sm:p-8">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-secondary">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,153,255,.12),transparent_48%)]" />
+        <img src={course.id === "pcm" ? "/assets/black-november/pcm-card.webp" : `/assets/black-november/${course.id}-mockup.webp`} alt={`Capa do curso ${course.shortTitle}`} loading="lazy" className="relative h-full w-full object-contain p-8 transition-transform duration-300 group-hover:scale-[1.035]" />
+      </div>
+      <span className="bn-eyebrow mt-6">{course.eyebrow} · {course.shortTitle}</span>
+      <h3 id={`${course.id}-title`} className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-.045em]">{course.title}</h3>
+      <p className="mt-5 text-sm leading-6 text-muted-foreground">{course.description}</p>
+      <div className="mt-7 grid grid-cols-2 gap-3">
+        {course.metrics.map(metric => (
+          <div key={metric.label} className="rounded-2xl bg-secondary px-4 py-3">
+            <strong className="block text-lg">{metric.value}</strong>
+            <span className="text-[11px] text-muted-foreground">{metric.label}</span>
+          </div>
+        ))}
+      </div>
+      <h4 className="mt-8 text-xs font-semibold uppercase tracking-[.14em] text-muted-foreground">Conteúdo do curso</h4>
+      <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        {course.topics.map(topic => (
+          <li key={topic} className="flex gap-3 text-sm leading-6">
+            <Check size={15} className="mt-1 shrink-0 text-accent" />
+            <span>{topic}</span>
+          </li>
+        ))}
+      </ul>
+      {course.modules && (
+        <details className="group mt-7 rounded-2xl border border-border bg-secondary/50">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-4 text-sm font-medium">
+            Ver conteúdo programático
+            <ChevronDown size={17} className="shrink-0 transition-transform group-open:rotate-180" />
+          </summary>
+          <div className="border-t border-border px-4 py-5">
+            <ol className="grid gap-3 text-sm leading-6 text-muted-foreground">
+              {course.modules.map((module, index) => (
+                <li key={module}><span className="mr-2 text-xs text-accent">{String(index + 1).padStart(2, "0")}</span>{module}</li>
+              ))}
+            </ol>
+          </div>
+        </details>
+      )}
+    </article>
+  );
 }
 
 export function Courses() {
-  return <><section id="combo" className="bn-section scroll-mt-28"><div className="bn-container"><span className="bn-eyebrow">O QUE VOCÊ LEVA</span><h2 className="bn-section-title mt-6 max-w-4xl">Cursos inclusos no combo 1.</h2><div id="cursos" className="mt-14 grid scroll-mt-28 gap-6 lg:grid-cols-3">{courses.map(c => <ProductCard key={c.id} course={c}/>)}</div></div></section>{courses.map((c,i) => <CourseBlock key={c.id} course={c} reverse={i % 2 === 1}/>)}</>;
+  return (
+    <section id="combo" className="bn-section scroll-mt-28">
+      <div className="bn-container">
+        <span className="bn-eyebrow">O QUE VOCÊ LEVA</span>
+        <h2 className="bn-section-title mt-6 max-w-4xl">Cursos inclusos no combo 1.</h2>
+        <div id="cursos" className="mt-14 grid scroll-mt-28 items-start gap-6 lg:grid-cols-3">
+          {courses.map(course => <ProductCard key={course.id} course={course} />)}
+        </div>
+      </div>
+    </section>
+  );
 }
