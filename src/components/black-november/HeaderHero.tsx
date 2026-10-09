@@ -18,16 +18,20 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
       </div>
       {open && <nav className="border-t border-border bg-background lg:hidden"><div className="bn-container grid gap-1 py-4">{[["#combo","O combo"],["#cursos","Cursos"],["#livro","Livro"],["#oferta","Oferta"],["#duvidas","Dúvidas"]].map(([href,label]) => <a key={href} href={href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground">{label}</a>)}<PrimaryCta phase={phase} className="mt-2 w-full sm:hidden"/></div></nav>}
     </header>
-    <section id="top" className="relative overflow-hidden border-b border-border pt-8 sm:pt-12 lg:pt-32">
+    <section id="top" className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden border-b border-border py-8 sm:py-10">
       <div className="absolute inset-0 bn-grid-line opacity-[.12]"/><div className="absolute left-1/2 top-0 h-[620px] w-[900px] -translate-x-1/2 rounded-full bg-accent/5 blur-3xl"/>
-      <div className="bn-container relative grid items-center gap-x-14 gap-y-10 pb-28 lg:grid-cols-[1.02fr_.98fr] lg:gap-x-16 lg:pb-36">
-        <div className="order-1 flex min-w-0 flex-col items-center gap-5 text-center lg:col-start-2 lg:row-start-1">
-          <p className="text-[10px] font-semibold uppercase leading-5 tracking-[.16em] text-muted-foreground">Black November 2026 · {phaseText}</p>
-          <div className="w-full max-w-[480px]"><Countdown /></div>
+      <div className="bn-container relative flex flex-col items-center gap-6 text-center sm:gap-8">
+        <img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" fetchPriority="high" className="block h-auto max-h-[calc(100svh-19rem)] w-full max-w-[1050px] object-contain" />
+        <div className="flex w-full flex-col items-center gap-3">
+          <p className="text-xs font-semibold uppercase leading-5 tracking-[.16em] text-muted-foreground sm:text-sm">Black November 2026 · {phaseText}</p>
+          <Countdown enlarged />
         </div>
-        <div className="order-2 min-w-0 lg:col-start-1 lg:row-start-1 lg:row-span-2"><span className="bn-eyebrow">BLACK NOVEMBER · ENGETELES</span><img src={BLACK_NOVEMBER_ICON} alt="Black November Engeteles" className="mt-6 h-auto w-full max-w-full sm:w-[600px]" /><h1 className="bn-hero-headline mt-5 max-w-[780px]">Planejamento, confiabilidade e gestão financeira.<span className="block text-muted-foreground">Em uma única formação.</span></h1><p className="mt-7 max-w-2xl text-xl font-medium leading-7 tracking-[-.025em] sm:text-2xl">3 cursos completos + o livro PCM Descomplicado de presente.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Aprenda a planejar a manutenção, analisar falhas e controlar custos.</p><div className="mt-10 flex flex-col items-start gap-5 xl:flex-row xl:items-center"><PrimaryCta phase={phase}/><a href="#combo" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">Ver tudo que está incluso <ArrowDown size={15}/></a></div><p className="mt-4 text-xs text-muted-foreground">Campanha válida de 01/11/2026 a 30/11/2026 às 23:59:59 (horário de Brasília).</p></div>
-
-        <div className="hero-stage order-3 lg:col-start-2 lg:row-start-2" aria-label="PCM, RCM, GFM e livro PCM Descomplicado">
+      </div>
+    </section>
+    <section aria-label="Formação Black November" className="relative border-b border-border py-16 sm:py-24 lg:py-28">
+      <div className="bn-container grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr] lg:gap-16">
+        <div className="min-w-0"><span className="bn-eyebrow">BLACK NOVEMBER · ENGETELES</span><h1 className="bn-hero-headline mt-5 max-w-[780px]">Planejamento, confiabilidade e gestão financeira.<span className="block text-muted-foreground">Em uma única formação.</span></h1><p className="mt-7 max-w-2xl text-xl font-medium leading-7 tracking-[-.025em] sm:text-2xl">3 cursos completos + o livro PCM Descomplicado de presente.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Aprenda a planejar a manutenção, analisar falhas e controlar custos.</p><div className="mt-10 flex flex-col items-start gap-5 xl:flex-row xl:items-center"><PrimaryCta phase={phase}/><a href="#combo" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">Ver tudo que está incluso <ArrowDown size={15}/></a></div><p className="mt-4 text-xs text-muted-foreground">Campanha válida de 01/11/2026 a 30/11/2026 às 23:59:59 (horário de Brasília).</p></div>
+        <div className="hero-stage" aria-label="PCM, RCM, GFM e livro PCM Descomplicado">
           <div className="hero-courses">
             <figure className="hero-product-card">
               <div className="hero-product-image"><img src="/assets/black-november/pcm-logo.png" alt="Logo PCM Descomplicado"/></div>
@@ -47,6 +51,7 @@ export function HeaderHero({ phase }: { phase: CampaignPhase }) {
             <figcaption><span className="hero-product-label">Livro de presente</span><p className="hero-product-name">PCM Descomplicado — 4ª edição</p></figcaption>
           </figure>
         </div>
+
       </div>
     </section>
     <section className="border-b border-border bg-card/40 py-10 sm:py-12"><div className="bn-container grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{[["+30 mil","alunos"],["101","países"],["+900","empresas atendidas"],["ISO 9001","processos de capacitação"]].map(([value,label]) => <div key={label} className="flex items-end gap-3 lg:border-r lg:border-border lg:last:border-r-0"><strong className="text-2xl font-semibold tracking-[-.04em]">{value}</strong><span className="pb-1 text-xs leading-4 text-muted-foreground">{label}</span></div>)}</div></section>
